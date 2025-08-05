@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Data UI</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; }
+        #map { height: 100vh; width: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+        #weather-info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+        #summary-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px; /* Adjust width as needed */
+            text-align: left;
+            font-size: 0.9em;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        h2 { font-size: 1.2em; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        h3 { font-size: 1.1em; margin-top: 10px; margin-bottom: 5px; }
+        p { margin: 0; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <div id="weather-info">
+        <h2>Raw Data</h2>
+        
+        <h3>Location</h3>
+        <p id="location-name-placeholder">Loading location name...</p>
+        <p>Latitude: {{ weather_data.location.latitude }}</p>
+        <p>Longitude: {{ weather_data.location.longitude }}</p>
+
+        <h3>Current Forecast</h3>
+        <p>Temperature: {{ "%.2f"|format(weather_data.forecast.current.temperature) }}°C</p>
+        <p>Rain: {{ weather_data.forecast.current.rain }} mm</p>
+        <p>Humidity: {{ weather_data.forecast.current.humidity }}%</p>
+        <p>Wind Speed: {{ "%.2f"|format(weather_data.forecast.current.wind_speed) }} m/s</p>
+
+        <h3>Air Quality (Current)</h3>
+        <p>PM10: {{ "%.2f"|format(weather_data.air_quality.current.pm10) }} µg/m³</p>
+        <p>PM2.5: {{ "%.2f"|format(weather_data.air_quality.current.pm2_5) }} µg/m³</p>
+    </div>
+    
+    <div id="summary-info">
+        <h2>Agent Summary</h2>
+        <p>{{ weather_data.summary }}</p>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const lat = {{ weather_data.location.latitude }};
+            const lon = {{ weather_data.location.longitude }};
+            
+            const map = L.map('map').setView([lat, lon], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            const marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup(`<b>Location Dot</b>`).openPopup();
+
+            const reverseGeocode = async (latitude, longitude) => {
+                const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    if (data && data.display_name) {
+                        const locationName = data.display_name;
+                        document.getElementById('location-name-placeholder').innerText = locationName;
+                        marker.setPopupContent(`<b>${locationName}</b>`);
+                    } else {
+                        document.getElementById('location-name-placeholder').innerText = 'Location name not found';
+                    }
+                } catch (error) {
+                    console.error('Error fetching location name:', error);
+                    document.getElementById('location-name-placeholder').innerText = 'Error fetching location name';
+                }
+            };
+            
+            reverseGeocode(lat, lon);
+        });
+    </script>
+
+</body>
+</html>

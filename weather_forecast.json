@@ -1,0 +1,46 @@
+{
+    "location": {
+        "latitude": 30.2711286,
+        "longitude": -97.7436995
+    },
+    "forecast": {
+        "current": {
+            "rain": 0.0,
+            "temperature": 28.62849998474121,
+            "humidity": 70.0,
+            "wind_speed": 15.51762866973877
+        },
+        "plus_1_hour": {
+            "rain": 0.0,
+            "temperature": 28.778499603271484,
+            "humidity": 66.0,
+            "wind_speed": 17.447933197021484
+        },
+        "plus_2_hour": {
+            "rain": 0.0,
+            "temperature": 30.37849998474121,
+            "humidity": 61.0,
+            "wind_speed": 13.979870796203613
+        }
+    },
+    "air_quality": {
+        "current": {
+            "pm10": 6.300000190734863,
+            "pm2_5": 5.099999904632568
+        },
+        "plus_1_hour": {
+            "pm10": 6.0,
+            "pm2_5": 5.0
+        },
+        "plus_2_hour": {
+            "pm10": 6.0,
+            "pm2_5": 5.099999904632568
+        }
+    },
+    "river_discharge": {
+        "today": 16.458221435546875,
+        "tomorrow": 17.155155181884766,
+        "day_after_tomorrow": 15.557699203491211
+    },
+    "summary": "The current temperature is 28.6\u00b0C with a light breeze of 15.5 km/h and good air quality. Over the next few hours, the temperature is expected to rise slightly, reaching around 30.4\u00b0C, with no rain anticipated, although the wind may pick up a bit. The risk of river flooding is low, so outdoor activities should be safe. I recommend going for a walk since the weather is pleasant and conditions are favorable. However, a trip to the swimming pool might be refreshing as well since the temperature is comfortably warm. Enjoy your day outdoors!"
+}

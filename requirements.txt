@@ -1,0 +1,11 @@
+crewai
+langchain_community
+ollama
+requests
+requests_cache
+retry_requests
+openmeteo-requests
+pydantic
+python-dotenv
+pandas
+python-dotenv

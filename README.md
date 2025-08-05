@@ -30,7 +30,8 @@ graph LR
 A[User Input Location] --> B[Get Coordinates via Nominatim]
 B --> C[Query Weather APIs from Open-Meteo]
 C --> D[Summarize Forecast using GPT-4o-mini]
-D --> E[Render on Map using Flask + OpenStreetMap]
+D --> E[Create a json for rendering on the map]
+E --> F[Render on Map using Flask + OpenStreetMap]
 ```
 
 ---
@@ -68,10 +69,11 @@ OPENAI_API_KEY=your_openai_key_here
 .
 ├── app.py                   # Flask app to serve map + weather
 ├── weather_forecast.json   # Stores latest summarized forecast
-├── Weather_tools.py        # Custom tools for CrewAI
+├── tools/
+│   └── Weather_tools.py        # Custom tools for CrewAI
 ├── requirements.txt
 ├── templates/
-│   └── map.html            # HTML template for Flask
+│   └── index.html            # HTML template for Flask
 └── README.md
 ```
 

@@ -71,7 +71,8 @@ OPENAI_API_KEY=your_openai_key_here
 
 ```
 .
-├── app.py                   # Flask app to serve map + weather
+├── Main.py                   # Crew Ai agents
+├── UI.py                   # Flask app to serve map + weather
 ├── weather_forecast.json   # Stores latest summarized forecast
 ├── tools/
 │   └── Weather_tools.py        # Custom tools for CrewAI
@@ -80,7 +81,12 @@ OPENAI_API_KEY=your_openai_key_here
 │   └── index.html            # HTML template for Flask
 └── README.md
 ```
+## 📁 How to run
 
+```
+- Run main.py first to generate json file(already populated right now)
+- Run UI.py to run the UI on local server 
+```
 ---
 
 ## 📌 Dependencies

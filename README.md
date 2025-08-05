@@ -11,6 +11,10 @@ This project is a weather intelligence web application that:
 - Uses **Flask** to display location and forecast info on an interactive map with OpenStreetMap
 
 ---
+## 📸 Screenshot
+
+![App Preview](Example.png)
+
 
 ## 🔧 Features
 

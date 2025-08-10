@@ -102,3 +102,9 @@ OPENAI_API_KEY=your_openai_key_here
 - **OpenStreetMap** – for geocoding and map visualization
 - **Open-Meteo** – for weather and environmental APIs
 - **OpenAI / CrewAI** – for summarizing large weather data
+
+## 👨‍💻 Author
+
+Chinmay @ Cognisyn Labs  
+- 🔬 https://cognisynlabs.com/
+- chinmayatcognisynlabs@gmail.com
